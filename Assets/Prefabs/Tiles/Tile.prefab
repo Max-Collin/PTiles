@@ -177,3 +177,6 @@ MonoBehaviour:
     lane: 2
     isLong: 0
     length: 5
+    timeUntilNextTile: 1
+    tileScore: 100
+  interacted: 0

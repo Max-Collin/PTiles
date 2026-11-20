@@ -12,11 +12,13 @@ public class TileEndZone : MonoBehaviour
         if (other.CompareTag("Tile"))
         {
             TileScript Tile = other.GetComponent<TileScript>();
-            if (Tile.interacted)
+            if (!Tile.interacted)
             {
-                Debug.Log("Tile entered the hit zone: " + other.name); 
+                Debug.Log("Missed Tile  -100 score"); 
+                TileGameManager.Instance.ChangeScore(-100);
+                TileGameManager.Instance.MissedTile( Tile);
             }
-            
+            Destroy(other.gameObject);
         }
     }
 }

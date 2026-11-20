@@ -8,10 +8,12 @@ public class TileData
 {
     public float speed = 5.0f;
     public int lane = 1;
-    public bool isLong;
+    public bool isHeld = false;
     public float length = 1.0f;
     
     public float timeUntilNextTile = 1f;
+
+    public int tileScore = 100;
 }
 public class TileScript : MonoBehaviour
 {
@@ -41,9 +43,21 @@ public class TileScript : MonoBehaviour
         transform.localScale = new Vector3(1f, tileData.length, 1f);
     }
 
+    public TileData GetTileData()
+    {
+        return tileData;
+    }
+
     public void Interact()
     {
-        Debug.Log("Tile interacted");
-        interacted = true;
+        if (!tileData.isHeld)
+        {
+            interacted = true;
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            Color color = sr.color;
+            color.a = 0.5f; // 0f = invisible, 1f = fully opaque
+            sr.color = color;
+        }
+       
     }
 }
