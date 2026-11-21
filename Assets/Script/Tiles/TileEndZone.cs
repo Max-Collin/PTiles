@@ -18,7 +18,17 @@ public class TileEndZone : MonoBehaviour
                 TileGameManager.Instance.ChangeScore(-100);
                 TileGameManager.Instance.MissedTile( Tile);
             }
-            Destroy(other.gameObject);
+
+            if (!Tile.GetTileData().isHeld)
+            {
+                Destroy(other.gameObject);
+            }
+
+            if ((Tile.GetTileData().isHeld && Tile.hasCompletedHold) || (Tile.GetTileData().isHeld && !Tile.interacted))
+            {
+                Destroy(other.gameObject);
+            }
+            
         }
     }
 }
